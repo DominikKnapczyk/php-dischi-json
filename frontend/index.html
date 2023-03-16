@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet"/>
+    <title>php-dischi-json</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  
+  <body>
+    <div id="app">
+      <!-- Header con logo -->
+      <header>
+        <div class="container" id="header-container">
+          <div class="header-left">
+            <img src="http://pluspng.com/img-png/spotify-logo-png-open-2000.png" alt=""/>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <div class="container">
+          <!-- Container per i dischi -->
+          <div id="discs-container">
+            <!-- Ciclo v-for per visualizzare tutti i dischi in base ai dati nell'array 'discs' -->
+            <div class="disc" v-for="disc in discs" @click="showDiscDetails(disc.title)">
+              <img :src="disc.poster" />
+              <h3>{{ disc.title }}</h3>
+              <small>{{ disc.author }}</small>
+            </div>
+          </div>
+
+          <!-- Container per dettagli disco selezionato -->
+          <div v-if="showDetails" id="disc-details-container">
+            <div class="disc single-disc">
+              <img :src="discDetails.poster" />
+              <h3>{{ discDetails.title }}</h3>
+              <small>{{ discDetails.author }}</small>
+              <small>{{ discDetails.genre }}</small>
+              <strong>{{ discDetails.year }}</strong>
+              <!-- Pulsante per nascondere dettagli disco selezionato -->
+              <div class="close-button-container">
+                <button class="button close-button" @click="hideDiscDetails">X</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js" integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./js/script.js"></script>
+  </body>
+</html>
